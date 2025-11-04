@@ -977,12 +977,6 @@
   .w-screen {
     width: 100vw;
   }
-  .flex-shrink {
-    flex-shrink: 1;
-  }
-  .grow {
-    flex-grow: 1;
-  }
   .transform {
     transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
   }
@@ -1004,6 +998,9 @@
       }
     }
   }
+  .cursor-pointer {
+    cursor: pointer;
+  }
   .flex-col {
     flex-direction: column;
   }
@@ -1013,23 +1010,18 @@
   .flex-row-reverse {
     flex-direction: row-reverse;
   }
+  .items-center {
+    align-items: center;
+  }
+  .justify-between {
+    justify-content: space-between;
+  }
   .gap-4 {
     gap: calc(var(--spacing) * 4);
   }
   .border {
     border-style: var(--tw-border-style);
     border-width: 1px;
-  }
-  .border-2 {
-    border-style: var(--tw-border-style);
-    border-width: 2px;
-  }
-  .border-b {
-    border-bottom-style: var(--tw-border-style);
-    border-bottom-width: 1px;
-  }
-  .border-base-300 {
-    border-color: var(--color-base-300);
   }
   .bg-b100 {
     background-color: var(--color-b100);
@@ -1109,10 +1101,20 @@
   padding: .75em 1em .75em 1em;
   background-color: var(--color-b150);
   color: var(--color-text);
+  cursor: pointer;
+  user-select: none;
 }
 ._activeTab {
   background-color: var(--color-b100);
   color: white;
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+#cursorHeader {
+  animation: blink 1s step-start infinite;
 }
 @layer base {
   :where(:root),:root:has(input.theme-controller[value=light]:checked),[data-theme=light] {

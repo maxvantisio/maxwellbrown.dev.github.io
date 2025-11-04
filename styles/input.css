@@ -33,10 +33,20 @@
 ._tab {
   padding: .75em 1em .75em 1em;
   background-color: var(--color-b150);
-  color: var(--color-text)
+  color: var(--color-text);
+  cursor: pointer;
+  user-select: none;
 }
 
 ._activeTab {
   background-color: var(--color-b100);
   color: white;
+}
+
+@keyframes blink {
+  50% {opacity: 0;};
+}
+
+#cursorHeader {
+  animation: blink 1s step-start infinite;
 }
