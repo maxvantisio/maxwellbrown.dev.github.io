@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.16",
+    "tabbyjs": "^12.0.3",
+    "tailwindcss": "^4.1.16"
+  },
+  "name": "maxwellbrown.dev.github.io",
+  "version": "1.0.0",
+  "description": "Personal portfolio website",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxvantisio/maxwellbrown.dev.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maxvantisio/maxwellbrown.dev.github.io/issues"
+  },
+  "homepage": "https://github.com/maxvantisio/maxwellbrown.dev.github.io#readme",
+  "devDependencies": {
+    "daisyui": "^5.3.10"
+  }
+}

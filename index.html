@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Portfolio.exe</title>
+    <link rel="stylesheet" href="./styles/output.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
+    <script src="./scripts/main.js"></script>
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  </head>
+  <body>
+    <!--
+        Ideas/TODO:
+            Collapsable side panel that has the actual code files that I used
+                Maybe have the code in a sub-folder?
+            In side panel also have links to github, linkedin, settings, etc
+    -->
+    <main class="w-screen min-h-screen p-2 font-jetbrainsReg">
+        <div class="bg-blue-500 _topBar">
+            <img src="./assets/panel-top.svg" class="inline-block"> 
+            <img src="./assets/square-x.svg" class="inline-block">
+        </div>
+        <!--Put nav inside sidebar?-->
+        <aside>
+            <ul class="list-style-none">
+                <li>
+                    <img src="./assets/folder-code.svg" class="_files">
+                </li>
+                <li>
+                    <img src="./assets/linkedin.svg" class="_linkedin">
+                </li>
+                <li>
+                    <img src="./assets/github.svg" class="_github">
+                </li>
+            </ul>
+        </aside>
+        <nav>
+            <div role="tablist" class="tabs tabs-lift _tabs">
+                <a role="tab" class="tab tab-active" id="welcome_tab">Welcome</a>
+                    <div class="tab-content border-2">
+                        <p>gjfdkshsfghse</p>
+                    </div>
+                <a role="tab" class="tab" id="about_tab">About Me</a>
+                    <div class="tab-content">
+                        <p>My name is Maxwell Brown, and I'm a college senior pursuing a Bachelors in Computer Science and a Data Science certificate.
+                        I've got a passion for the creative side of coding, and love turning ideas into interactive projects</p>
+                        <p>Outside of class, I've worked as a freelance software developer where I created small projects (including static websites and desktop applications),
+                        developed and tested APIs, and [idk something about the criterion/rubric projects]. That work gave me the chance to explore multiple languages outside
+                        the classroom environment, and gave me the skills to persue more advanced personal projects.</p>
+                        <p>When I'm not coding, you'll probably find me experimenting with 3D modeling in Blender and exploring game development in Godot. I enjoy projects that let
+                        me combine problem-solving with creative design, whether that's developing(?) unique web interfaces or bringing an idea to life in 3D/Blender.</p>
+                    </div>
+                <a role="tab" class="tab" id="projects_tab">Projects</a>
+                <div class="tab-content">
+                    <div class="large grid centered square-grid">
+                        <h2 class="text-xl">HELLO WORLD</h2>
+                    </div>
+                </div>
+                <a role="tab" class="tab" id="resume_tab">Resume</a>
+                <div class="tab-content">
+                    <h2 class="text-xl">TESTING</h2>
+                </div>
+                 <span class="grow border-b border-base-300"></span>
+            </div>
+        </nav>
+    </main>
+  </body>
+</html>

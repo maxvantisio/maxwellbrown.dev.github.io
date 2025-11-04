@@ -1,0 +1,18 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+@theme {
+  --font-jetbrainsReg: JetBrainsReg;
+  --font-jetbrainsBold: JetBrainsBold;
+}
+
+@font-face {
+    font-family: JetBrainsReg;
+    src: url("../assets/fonts/JetBrains/webfont/JetBrainsMono-Regular.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: JetBrainsBold;
+    src: url("../assets/fonts/JetBrains/webfont/JetBrainsMono-Bold.woff2") format("woff2");
+}
+
