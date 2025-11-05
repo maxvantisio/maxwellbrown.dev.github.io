@@ -12,14 +12,21 @@
     <script src="./scripts/main.js"></script>
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
   </head>
-  <body>
+  <body class="">
     <!--
         Ideas/TODO:
-            Collapsable side panel that has the actual code files that I used
+            - Collapsable side panel that has the actual code files that I used
                 Maybe have the code in a sub-folder?
-            In side panel also have links to github, linkedin, settings, etc
+            - In side panel also have links to github, linkedin, settings, etc
+            - Make icons/text all bigger
+        Add functionality to minimize button, desktop behind it
+        Implement the underline animation again, compare with light flicker
+        Theme switcher (maybe try alpine.js so i wont use daisy.ui for just 1 thing)
+        Small test suite w/ jest
+        lazy-loading/optimization
+        ARIA roles + go over semantic tags
     -->
-    <main class="w-screen min-h-screen p-0 font-jetbrainsReg bg-b100">
+    <main class="w-screen min-h-screen p-0 font-jetbrainsReg bg-b100 cursor-[url('../assets/mouse-pointer-2.svg'),pointer]">
         <div class="bg-b400 pt-2 pl-2 pb-2 pr-4 flex justify-between items-center _topBar">
             <!--name-->
             <div class="flex items-center">
@@ -27,11 +34,11 @@
                 <span id="cursorHeader" class="">|</span>
             </div>
 
-            <!--header icons-->
+            <!--header icons -->
             <div class="flex flex-row-reverse gap-4">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" 
-                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                stroke-linejoin="round" class="lucide lucide-square-x-icon lucide-square-x stroke-sky-50">
+                    fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" class="lucide lucide-square-x-icon lucide-square-x stroke-sky-50">
                     <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
                     <path d="m15 9-6 6"/>
                     <path d="m9 9 6 6"/>
@@ -39,11 +46,11 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" 
                     fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" 
                     stroke-linejoin="round" class="lucide lucide-panel-top-icon lucide-panel-top inline-block stroke-sky-50">
-                        <rect width="18" height="18" x="3" y="3" rx="2"/>
-                        <path d="M3 9h18"/>
+                    <rect width="18" height="18" x="3" y="3" rx="2"/>
+                    <path d="M3 9h18"/>
                 </svg>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus-icon lucide-minus stroke-sky-50">
+                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus-icon lucide-minus stroke-sky-50">
                     <path d="M5 12h14"/>
                 </svg>
             </div>
@@ -52,64 +59,103 @@
             <!--Put nav inside sidebar?-->
             <nav class="_sidebar flex flex-col bg-b300 pl-2 pr-2">
                 <ul class="list-style-none">
-                    <li class="pt-2 pb-2 cursor-pointer">
+                    <li class="pt-2 pb-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                          stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder-code-icon lucide-folder-code stroke-text">
+                            stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder-code-icon lucide-folder-code stroke-text">
                             <path d="M10 10.5 8 13l2 2.5"/>
                             <path d="m14 10.5 2 2.5-2 2.5"/>
                             <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2z"/>
                         </svg>
                     </li>
-                    <li class="pt-2 pb-2 cursor-pointer">
+                    <li class="pt-2 pb-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                          stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin-icon lucide-linkedin stroke-text">
+                            stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin-icon lucide-linkedin stroke-text">
                             <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
                             <rect width="4" height="12" x="2" y="9"/>
                             <circle cx="4" cy="4" r="2"/>
                         </svg>
                     </li>
-                    <li class="pt-2 pb-2 cursor-pointer">
+                    <li class="pt-2 pb-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                          stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github-icon lucide-github stroke-text">
-                          <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8
-                           0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
-                           <path d="M9 18c-4.51 2-5-2-7-2"/>
+                            stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github-icon lucide-github stroke-text">
+                            <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8
+                            0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                            <path d="M9 18c-4.51 2-5-2-7-2"/>
                         </svg>
                     </li>
-                    <li class="pt-2 pb-2 cursor-pointer">
+                    <li class="pt-2 pb-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                         stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail-icon lucide-mail stroke-text">
-                         <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/>
-                         <rect x="2" y="4" width="20" height="16" rx="2"/>
+                            stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail-icon lucide-mail stroke-text">
+                            <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/>
+                            <rect x="2" y="4" width="20" height="16" rx="2"/>
                         </svg>
                     </li>
                 </ul>
             </nav>
             <nav class="_mainContent w-full">
-                <div x-data="{ active_tab: 0}">
+                <div x-data="{ active_tab: 'home'}">
                     <ul class="list-style-none flex flex-row bg-b150">
-                        <li @click="active_tab = 0" :class="active_tab === 0 ? '_activeTab' : ''" class="_tab">Welcome</li>
-                        <li @click="active_tab = 1" :class="active_tab === 1 ? '_activeTab' : ''" class="_tab">About Me</li>
-                        <li @click="active_tab = 2" :class="active_tab === 2 ? '_activeTab' : ''" class="_tab">Projects</li>
-                        <li @click="active_tab = 3" :class="active_tab === 3 ? '_activeTab' : ''" class="_tab">Resume</li>
+                        <li @click="active_tab = 'home'" :class="active_tab === 'home' ? '_activeTab' : ''" class="_tab">Home</li>
+                        <li @click="active_tab = 'about_me'" :class="active_tab === 'about_me' ? '_activeTab' : ''" class="_tab">About Me</li>
+                        <li @click="active_tab = 'skills'" :class="active_tab === 'skills' ? '_activeTab' : ''" class="_tab">Skills</li>
+                        <li @click="active_tab = 'projects'" :class="active_tab === 'projects' ? '_activeTab' : ''" class="_tab">Projects</li>
+                        <li @click="active_tab = 'resume'" :class="active_tab === 'resume' ? '_activeTab' : ''" class="_tab">Resume</li>
                     </ul>
-                    <div x-show="active_tab === 0" x-transition @click="animateTabContent()" class="p-2 _tabContent">
+                    <div x-show="active_tab === 'home'" x-transition @click="animateTabContent()" class="p-4 _tabContent">
                         <p>Welcome to my portfolio</p>
                     </div>
-                    <div x-show="active_tab === 1" x-transition @click="animateTabContent()" class="p-2 _tabContent">
-                        <p>My name is Maxwell Brown, and I'm a college senior pursuing a Bachelors in Computer Science and a Data Science certificate.
-                            I've got a passion for the creative side of coding, and love turning ideas into interactive projects</p>
-                            <p>Outside of class, I've worked as a freelance software developer where I created small projects (including static websites and desktop applications),
-                            developed and tested APIs, and [idk something about the criterion/rubric projects]. That work gave me the chance to explore multiple languages outside
-                            the classroom environment, and gave me the skills to persue more advanced personal projects.</p>
-                            <p>When I'm not coding, you'll probably find me experimenting with 3D modeling in Blender and exploring game development in Godot. I enjoy projects that let
-                            me combine problem-solving with creative design, whether that's developing(?) unique web interfaces or bringing an idea to life in 3D/Blender.</p>
+                    <div x-show="active_tab === 'about_me'" x-transition @click="animateTabContent()" class="p-4 _tabContent">
+                        <p>Hi there! I'm a soon-to-be Computer Science graduate with a passion for the creative side of coding. I love turning ideas into interactive projects
+                            and have developed a strong interest in front-end web development along the way.<p>
+                        <br>
+                        <p>Outside of class, I've worked as a freelance software developer, where I built small-scale projects ranging from static websites to desktop 
+                            applications, developed and tested APIs, and contributed to software validation work based on detailed client criteria and project rubrics. 
+                            That experience allowed me to explore multiple programming languages outside the classroom and strengthened my ability to take on more advanced 
+                            personal projects.</p>
+                        <br>
+                        <p>I've always been a very curious person, and that has been my main driving force for entering this field. Whether it's debugging a stubborn 
+                            piece of code or perfecting a 3D model, I'm enthralled by the challenge and the satisfaction of getting it just right. My curious nature has 
+                            taught me resilience and adaptability, qualities I bring to every project I start.</p>
+                        <br>
+                        <p>When I'm not coding, you'll probably find me experimenting with 3D modeling in Blender and exploring game development in Godot. 
+                            I enjoy projects that let me combine problem-solving with creative design, whether that's developing unique web interfaces or 
+                            bringing an idea to life in 3D.</p>
                     </div>
-                    <div x-show="active_tab === 2" x-transition @click="animateTabContent()" class="p-2 _tabContent">
+                    <div x-show="active_tab === 'skills'" x-transition @click="animateTabContent()" class="p-4 _tabContent">
+                        <p>This is my skills page</p>
+                    </div>
+                    <div x-show="active_tab === 'projects'" x-transition @click="animateTabContent()" class="p-4 _tabContent">
                         <p>This is my project page!</p>
                     </div>
-                    <div x-show="active_tab === 3" x-transition @click="animateTabContent()" class="p-2 _tabContent">
-                        <p>This is my resume section!</p>
+                    <div x-show="active_tab === 'resume'" x-transition @click="animateTabContent()" class="p-4 _tabContent flex justify-between items-start">
+                        <div>
+                            <h2 class="text-left text-4xl">Maxwell Brown</h2>
+                            <h4 class="text-left text-2xl">hello@maxwellbrown.dev - 
+                                <a href="https://www.linkedin.com/in/maxwellhbrown/" target="_blank" rel="noopener noreferrer"
+                                class="text-text hover:animate-[flicker_0.6s_ease-in-out_1] hover:text-sky-50 transition cursor-[url('../assets/mouse-pointer-2.svg'),pointer]">
+                                    LinkedIn
+                                    <span class="absolute bottom-0 left-0 h-0.5 bg-sky-400 w-0"></span>
+                                </a>
+                            </h4>
+                        </div>
+                        <div class="grow flex flex-row-reverse mr-2">
+                            <a href="./assets/MaxwellBrownResume.pdf" download class="inline-flex items-center gap-2 bg-b300 hover:bg-b200 border-b400 text-sky-50
+                                px-4 py-2 rounded-sm shadow-sm mt-[2px]">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download-icon lucide-download">
+                                    <path d="M12 15V3"/>
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <path d="m7 10 5 5 5-5"/>
+                                </svg>
+                                <span class="text-sm tracking-wide">Download Resume</span>
+                            </a>    
+                    </div>
+                        
+                            
+     <!-- download
+     class="inline-flex items-center gap-2 bg-b300 hover:bg-b200 border border-b400 text-sky-50 px-4 py-2 rounded-lg shadow-sm transition duration-200 hover:translate-y-[-1px]"> -->
+
+
                     </div>
                     <!-- <div class="tab-content">
                         <div class="large grid centered square-grid">
