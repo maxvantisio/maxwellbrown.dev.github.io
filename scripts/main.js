@@ -3,26 +3,26 @@ document.addEventListener("DOMContentLoaded", function() {
     const name = "Maxwell Brown | CS Senior at Appalachian State University"
 
     
-    // const sweepLink = document.querySelector('#linkedinLink');
-    // const sweepLine = sweepLink.querySelector('span');
+    const sweepLink = document.querySelector('#linkedinLine');
+    const sweepLine = sweepLink.querySelector('span');
 
-    // sweepLink.addEventListener('mouseenter', () => {
-    // anime({
-    //     targets: sweepLine,
-    //     width: ['0%', '100%'],
-    //     easing: 'easeOutExpo',
-    //     duration: 400
-    // });
-    // });
+    sweepLink.addEventListener('mouseenter', () => {
+    anime({
+        targets: sweepLine,
+        width: ['0%', '100%'],
+        easing: 'easeOutExpo',
+        duration: 400
+    });
+    });
 
-    // sweepLink.addEventListener('mouseleave', () => {
-    // anime({
-    //     targets: sweepLine,
-    //     width: ['100%', '0%'],
-    //     easing: 'easeInExpo',
-    //     duration: 400
-    // });
-    // });
+    sweepLink.addEventListener('mouseleave', () => {
+    anime({
+        targets: sweepLine,
+        width: ['100%', '0%'],
+        easing: 'easeInExpo',
+        duration: 400
+    });
+    });
 
     
 

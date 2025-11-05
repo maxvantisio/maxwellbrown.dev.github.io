@@ -12,7 +12,7 @@
     <script src="./scripts/main.js"></script>
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
   </head>
-  <body class="">
+  <body class="overflow-hidden">
     <!--
         Ideas/TODO:
             - Collapsable side panel that has the actual code files that I used
@@ -22,14 +22,21 @@
         Add functionality to minimize button, desktop behind it
         Implement the underline animation again, compare with light flicker
         Theme switcher (maybe try alpine.js so i wont use daisy.ui for just 1 thing)
+            - ability to enable custom cursor
+                - cursor-[url('../assets/mouse-pointer-2.svg'),pointer]
         Small test suite w/ jest
         lazy-loading/optimization
         ARIA roles + go over semantic tags
+
+        FIX:
+            content inside main window doesn't overflow when window is resized
+                - start making CSS rules depend on size
+                - create a mobile/small screen friendly layout
     -->
-    <main class="w-screen min-h-screen p-0 font-jetbrainsReg bg-b100 text-white cursor-[url('../assets/mouse-pointer-2.svg'),pointer]">
+    <main class="w-screen min-h-screen p-0 font-jetbrainsReg bg-b100 text-white">
         <div class="bg-b400 pt-2 pl-2 pb-2 pr-4 flex justify-between items-center _topBar">
             <!--name-->
-            <div class="flex items-center">
+            <div class="flex items-center text-highlight-blue">
                 <span id="nameHeader"></span>
                 <span id="cursorHeader" class="">|</span>
             </div>
@@ -59,7 +66,7 @@
             <!--Put nav inside sidebar?-->
             <nav class="_sidebar flex flex-col bg-b300 pl-2 pr-2">
                 <ul class="list-style-none">
-                    <li class="pt-2 pb-2">
+                    <li class="pt-2 pb-2 cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
                             stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder-code-icon lucide-folder-code stroke-text">
                             <path d="M10 10.5 8 13l2 2.5"/>
@@ -67,23 +74,27 @@
                             <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2z"/>
                         </svg>
                     </li>
-                    <li class="pt-2 pb-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                            stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin-icon lucide-linkedin stroke-text">
-                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-                            <rect width="4" height="12" x="2" y="9"/>
-                            <circle cx="4" cy="4" r="2"/>
-                        </svg>
+                    <li class="pt-2 pb-2 cursor-pointer">
+                        <a href="" target="_blank" rel="noopener noreferrer">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin-icon lucide-linkedin stroke-text">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                                <rect width="4" height="12" x="2" y="9"/>
+                                <circle cx="4" cy="4" r="2"/>
+                            </svg>
+                        </a>
                     </li>
-                    <li class="pt-2 pb-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                            stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github-icon lucide-github stroke-text">
-                            <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8
-                            0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
-                            <path d="M9 18c-4.51 2-5-2-7-2"/>
-                        </svg>
+                    <li class="pt-2 pb-2 cursor-pointer">
+                        <a href="https://github.com/maxwellbytes" target="_blank" rel="noopener noreferrer">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github-icon lucide-github stroke-text">
+                                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8
+                                0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                                <path d="M9 18c-4.51 2-5-2-7-2"/>
+                            </svg>
+                        </a>
                     </li>
-                    <li class="pt-2 pb-2">
+                    <li class="pt-2 pb-2 cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
                             stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail-icon lucide-mail stroke-text">
                             <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/>
@@ -122,7 +133,16 @@
                             bringing an idea to life in 3D.</p>
                     </div>
                     <div x-show="active_tab === 'skills'" x-transition @click="animateTabContent()" class="p-4 _tabContent">
-                        <p>This is my skills page</p>
+                        <div class="grid grid-cols-3">
+                            <h2>Tech stack used for this website:</h2>
+                            <div class="col-span-2 grid grid-cols-4 gap-4 m-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><path d="M64.004 25.602c-17.067 0-27.73 8.53-32 25.597 6.398-8.531 13.867-11.73 22.398-9.597 4.871 1.214 8.352 4.746 12.207 8.66C72.883 56.629 80.145 64 96.004 64c17.066 0 27.73-8.531 32-25.602-6.399 8.536-13.867 11.735-22.399 9.602-4.87-1.215-8.347-4.746-12.207-8.66-6.27-6.367-13.53-13.738-29.394-13.738zM32.004 64c-17.066 0-27.73 8.531-32 25.602C6.402 81.066 13.87 77.867 22.402 80c4.871 1.215 8.352 4.746 12.207 8.66 6.274 6.367 13.536 13.738 29.395 13.738 17.066 0 27.73-8.53 32-25.597-6.399 8.531-13.867 11.73-22.399 9.597-4.87-1.214-8.347-4.746-12.207-8.66C55.128 71.371 47.868 64 32.004 64zm0 0" fill="#38bdf8"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><path fill="#1572B6" d="M18.814 114.123L8.76 1.352h110.48l-10.064 112.754-45.243 12.543-45.119-12.526z"/><path fill="#33A9DC" d="M64.001 117.062l36.559-10.136 8.601-96.354h-45.16v106.49z"/><path fill="#fff" d="M64.001 51.429h18.302l1.264-14.163H64.001V23.435h34.682l-.332 3.711-3.4 38.114h-30.95V51.429z"/><path fill="#EBEBEB" d="M64.083 87.349l-.061.018-15.403-4.159-.985-11.031H33.752l1.937 21.717 28.331 7.863.063-.018v-14.39z"/><path fill="#fff" d="M81.127 64.675l-1.666 18.522-15.426 4.164v14.39l28.354-7.858.208-2.337 2.406-26.881H81.127z"/><path fill="#EBEBEB" d="M64.048 23.435v13.831H30.64l-.277-3.108-.63-7.012-.331-3.711h34.646zm-.047 27.996v13.831H48.792l-.277-3.108-.631-7.012-.33-3.711h16.447z"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><linearGradient id="d3js-original-a" gradientUnits="userSpaceOnUse" x1="-201.009" y1="376.844" x2="-200.098" y2="375.873" gradientTransform="matrix(82.4907 0 0 -81.4303 16634.416 30700.326)"><stop offset="0" stop-color="#f9a03c"/><stop offset="1" stop-color="#f7974e"/></linearGradient><path fill="url(#d3js-original-a)" d="M126.334 90.59a37.18 37.18 0 00.128-1.647C126.5 88.288 87.094 50.9 87.094 50.9h-.942s39.94 42.13 40.182 39.69z"/><linearGradient id="d3js-original-b" gradientUnits="userSpaceOnUse" x1="-199.257" y1="373.615" x2="-197.514" y2="371.916" gradientTransform="matrix(40.2105 0 0 -40.4122 8003.203 15127)"><stop offset="0" stop-color="#f9a03c"/><stop offset="1" stop-color="#f7974e"/></linearGradient><path fill="url(#d3js-original-b)" d="M42.26 77.62a26.282 26.282 0 01-.328.702c-1.256 2.62 17.585 21.038 19.1 18.8.07-.098.14-.202.208-.3.077-.118.152-.23.228-.348 1.213-1.84-18.67-20.05-19.207-18.854z"/><linearGradient id="d3js-original-c" gradientUnits="userSpaceOnUse" x1="-199.836" y1="374.252" x2="-198.286" y2="372.475" gradientTransform="matrix(41.0403 0 0 -39.9333 8224.5 14997.683)"><stop offset="0" stop-color="#f9a03c"/><stop offset="1" stop-color="#f7974e"/></linearGradient><path fill="url(#d3js-original-c)" d="M68.886 103.52c-.053.118-.433.76-.78 1.098-.058.117 18.394 18.417 18.394 18.417h1.66c.002 0-17.32-18.74-19.274-19.514z"/><linearGradient id="d3js-original-d" gradientUnits="userSpaceOnUse" x1="-201.143" y1="379.263" x2="-200.795" y2="378.804" gradientTransform="matrix(255.8347 0 0 -242.016 51476.605 91789.102)"><stop offset="0" stop-color="#f26d58"/><stop offset="1" stop-color="#f9a03c"/></linearGradient><path fill="url(#d3js-original-d)" d="M126.488 88.61c-.863 19.13-16.69 34.425-36.024 34.425H87.85l-19.31-19.022a69.313 69.313 0 004.38-6.98h17.544c5.55 0 10.064-4.514 10.064-10.065 0-5.55-4.515-10.064-10.064-10.064H80.082A69.373 69.373 0 0081.306 64c0-4.48-.44-8.852-1.26-13.1h6.45l39.88 39.295a48.62 48.62 0 00.112-1.585zM11.962 4.772H1.472v26.003h10.49c18.32 0 33.23 14.903 33.23 33.225 0 4.984-1.113 9.716-3.088 13.964L61.24 96.82A58.882 58.882 0 0071.2 64c0-32.658-26.574-59.228-59.236-59.228z"/><linearGradient id="d3js-original-e" gradientUnits="userSpaceOnUse" x1="-200.962" y1="378.553" x2="-200.452" y2="378.218" gradientTransform="matrix(160.7307 0 0 -174.8133 32360.78 66184.883)"><stop offset="0" stop-color="#b84e51"/><stop offset="1" stop-color="#f68e48"/></linearGradient><path fill="url(#d3js-original-e)" d="M90.464 4.772H47.986a69.81 69.81 0 0124.82 26.003h17.658c5.55 0 10.064 4.513 10.064 10.064 0 5.55-4.515 10.06-10.064 10.06h-3.968l39.88 39.296a36.65 36.65 0 00.152-3.228c0-8.766-3.146-16.807-8.368-23.066 5.223-6.256 8.368-14.3 8.368-23.063 0-19.887-16.177-36.068-36.064-36.068z"/><linearGradient id="d3js-original-f" gradientUnits="userSpaceOnUse" x1="-200.619" y1="377.137" x2="-200.595" y2="376.532" gradientTransform="matrix(176.7653 0 0 -92.6293 35504.598 35022.56)"><stop offset="0" stop-color="#f9a03c"/><stop offset="1" stop-color="#f7974e"/></linearGradient><path fill="url(#d3js-original-f)" d="M87.85 123.035H48.29a69.95 69.95 0 0020.25-19.022l19.31 19.022zM61.24 96.82L42.106 77.965c-5.287 11.362-16.807 19.264-30.143 19.264H1.472v26h10.49c20.53 0 38.648-10.5 49.28-26.407z"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><path fill="#77c1d2" fill-rule="evenodd" d="M98.444 35.562 126 62.997 98.444 90.432 70.889 62.997z" clip-rule="evenodd"/><path fill="#2d3441" fill-rule="evenodd" d="m29.556 35.562 57.126 56.876H31.571L2 62.997z" clip-rule="evenodd"/></svg>
+                            </div>
+                        </div>
+                        
                     </div>
                     <div x-show="active_tab === 'projects'" x-transition @click="animateTabContent()" class="p-4 _tabContent">
                         <p>This is my project page!</p>
@@ -132,11 +152,14 @@
                             <h2 class="text-left text-4xl">Maxwell Brown</h2>
                             <h4 class="text-left text-2xl">hello@maxwellbrown.dev - 
                                 <a href="https://www.linkedin.com/in/maxwellhbrown/" target="_blank" rel="noopener noreferrer" id="linkedinLine"
-                                class="text-text relative inline-block cursor-[url('../assets/mouse-pointer-2.svg'),pointer]">
+                                class="relative inline-block">
                                     LinkedIn
-                                    <span class="absolute bottom-0 left-0 h-0.5 bg-sky-400 w-0"></span>
+                                    <span class="absolute bottom-0 left-0 h-0.5 bg-highlight-blue w-0"></span>
                                 </a>
                             </h4>
+                            <br>
+                            <p>Computer Science senior graduating in December 2025 with hands-on experience building responsive web applications.
+                            Passionate about front-end development, problem-solving, and writing clean, efficient code that solves real problems.</p>
                         </div>
                         <div class="grow flex flex-row-reverse mr-2">
                             <a href="./assets/MaxwellBrownResume.pdf" download class="inline-flex items-center gap-2 bg-b300 hover:bg-b200 border-b400 text-sky-50
@@ -149,14 +172,12 @@
                                 </svg>
                                 <span class="text-sm tracking-wide">Download Resume</span>
                             </a>    
+                        </div>
+                    <!-- download
+                    class="inline-flex items-center gap-2 bg-b300 hover:bg-b200 border border-b400 text-sky-50 px-4 py-2 rounded-lg
+                    shadow-sm transition duration-200 hover:translate-y-[-1px]"> -->
                     </div>
-                        
-                            
-     <!-- download
-     class="inline-flex items-center gap-2 bg-b300 hover:bg-b200 border border-b400 text-sky-50 px-4 py-2 rounded-lg shadow-sm transition duration-200 hover:translate-y-[-1px]"> -->
-
-
-                    </div>
+                    
                     <!-- <div class="tab-content">
                         <div class="large grid centered square-grid">
                             <h2 class="text-xl">HELLO WORLD</h2>
