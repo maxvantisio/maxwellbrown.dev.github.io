@@ -42,6 +42,10 @@
   color: white;
 }
 
+._skills {
+  margin-bottom: 1em;
+}
+
 @keyframes blink {
   50% {opacity: 0;};
 }
