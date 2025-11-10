@@ -1,24 +1,40 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-jetbrainsReg: JetBrainsReg;
   --font-jetbrainsBold: JetBrainsBold;
   --font-jetbrainsItalic: JetBrainsItalic;
-  /*--color-text: #415466;*/
-  --color-text: #748CA3;
-  --color-dark: #000814;
-  /*--color-mid: #001D3D;*/
-  /*--color-mid: #182634;*/
-  --color-mid: #242C33;
-  --color-light: #003566;
-  --color-highlight-red: #F71735;
-  --color-highlight-blue: #41EAD4;
-  --color-b100: #1d232a;
-  --color-b150: #181e25;
-  --color-b200: #191e24;
-  --color-b300: #15191e;
-  --color-b400: #0f1318;
+  
+  --color-teal: #00BFA6;
+  --color-headerBG: #D9DCDE;
+  --color-headerText: #033030;
+  --color-headerIcons: #55657D;
+  --color-sbBG: #E9EDF2;
+  --color-sbIcon: #55657D;
+  --color-inactiveTabBG: #F1F3F6;
+  --color-inactiveTabText: #687B94;
+  --color-activeTabBG: white;
+  --color-activeTabText: #1A1F25;
+  --color-taskbarBG: #F6F7F9;
+  --color-highlight: #1F2457;
+}
+
+.dark {
+  --color-teal: #41EAD4;
+  --color-headerBG: #0f1318;
+  --color-headerText: #41EAD4;
+  --color-headerIcons: #F0F9FF;
+  --color-sbBG: #15191e;
+  --color-sbIcon: #9AA9BE;
+  --color-inactiveTabBG: #181e25;
+  --color-inactiveTabText: #9AA9BE;
+  --color-activeTabBG: #1d232a;
+  --color-activeTabText: white;
+  --color-taskbarBG: #0f1318;
+  --color-highlight: #41EAD4;
 }
 
 @utility no-scrollbar {
@@ -42,15 +58,20 @@
 
 ._tab {
   padding: .75em 1em .75em 1em;
-  background-color: var(--color-b150);
-  color: var(--color-text);
+  background-color: var(--color-inactiveTabBG);
+  color: var(--color-inactiveTabText);
   user-select: none;
 }
 
 ._activeTab {
-  background-color: var(--color-b100);
-  color: white;
+  background-color: var(--color-activeTabBG);
+  color: var(--color-activeTabText);
 }
+
+/* ._tabContent {
+  background-color: var(--color-activeTabBG);
+  color: var(--color-activeTabText);
+} */
 
 ._skills {
   margin-bottom: 1em;
