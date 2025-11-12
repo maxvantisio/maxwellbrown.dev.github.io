@@ -63,6 +63,7 @@
   background-color: var(--color-inactiveTabBG);
   color: var(--color-inactiveTabText);
   user-select: none;
+  cursor: pointer;
 }
 
 ._activeTab {

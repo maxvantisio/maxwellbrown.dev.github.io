@@ -1,20 +1,223 @@
 let portfolioButton;
 let mainWindow;
 let portfolioWindow;
+let codeButton;
+let codeWindow;
 //change this once i implement more than 1 window
 let isMinimized = true;
 
+//TODO 11/12: update everything to use id
 document.addEventListener('DOMContentLoaded', () => {
     portfolioButton = document.querySelector('#portfolioButton');
     mainWindow = document.querySelector('#mainWindow');
-    portfolioWindow = document.querySelector('#portfolioContent')
+    portfolioWindow = document.querySelector('#portfolioContent');
+    codeButton = document.getElementById('codeButton');
+    codeWindow = document.getElementById('codeWindow');
     // taskbarWindow = document.querySelector("#taskbarWindows");
 });
+
+function windowManager(){
+    return {
+        windows: {
+            portfolio: {state: 'closed'},
+            code: {state: 'closed'}
+        },
+        onTop: '',
+        openWindow: async function(name){
+            if (this.windows[name].state === 'closed'){
+                openAnims(name);
+                this.windows[name].state = 'open';
+            }
+            else if (this.windows[name].state === 'minim'){
+                await minimAnims(name, 'max');
+                this.windows[name].state = 'open';
+            }
+            this.onTop = name;
+        },
+        toggleMinimize: async function(name){
+            if (this.windows[name].state !== 'minim'){
+                await minimAnims(name, 'min');
+                this.windows[name].state = 'minim';
+            }
+            else {
+                await minimAnims(name, 'max');
+                this.windows[name].state = 'open';
+                this.onTop = name;
+            }
+        },
+        minimizeWindow: async function(name){
+            await minimAnims(name, 'min');
+            this.windows[name].state = 'minim';
+        },
+        closeWindow(name){
+            this.windows[name].state = 'closed';
+        },
+        //will be used in the future i think
+        bringToFront(name){
+            this.onTop = name;
+        },
+        isOpen(name){
+            return this.windows[name].state === 'open';
+        },
+        isMinimized(name){
+            return this.windows[name].state === 'minim';
+        }
+    }
+}
+
+//TODO 11/12: Remove repeat code, store target/buttonCoords/windowCoords in local variables depending on name
+function minimAnims(name, direction){
+    return new Promise((resolve) => {
+        switch (name) {
+            case 'portfolio':
+                if (direction === 'min'){
+                    let buttonCoords = portfolioButton.getBoundingClientRect();
+                    let windowCoords = mainWindow.getBoundingClientRect();
+
+                    portfolioWindow.style.zIndex = 0;
+
+                    let translateX = buttonCoords.left + buttonCoords.width/2 - (windowCoords.left + windowCoords.width/2);
+                    let translateY = buttonCoords.top + buttonCoords.height/2 - (windowCoords.top + windowCoords.height/2);
+
+                    anime({
+                        targets: portfolioWindow,
+                        translateX: translateX,
+                        translateY: translateY,
+                        scale: 0.01,
+                        easing: 'easeInOutQuad',
+                        duration: 250,
+                        complete: () => {
+                            portfolioWindow.style.display = 'none'
+                            resolve();
+                        }
+                    });
+                }
+                else if (direction === 'max'){
+                    portfolioWindow.style.display = 'flex';
+                    portfolioWindow.style.zIndex = 1;
+
+                    anime({
+                        targets: portfolioWindow,
+                        translateX: 0,
+                        translateY: 0,
+                        scale: 1,
+                        opacity: 1,
+                        borderRadius: '0.5rem',
+                        easing: 'easeInOutQuad',
+                        duration: 250,
+                        complete: () => resolve()
+                    });
+                }
+                else {
+                    resolve();
+                }
+                break;
+            case 'code':
+                if (direction === 'min'){
+                    let buttonCoords = codeButton.getBoundingClientRect();
+                    let windowCoords = mainWindow.getBoundingClientRect();
+
+                    codeWindow.style.zIndex = 0;
+
+                    let translateX = buttonCoords.left + buttonCoords.width/2 - (windowCoords.left + windowCoords.width/2);
+                    let translateY = buttonCoords.top + buttonCoords.height/2 - (windowCoords.top + windowCoords.height/2);
+
+                    anime({
+                        targets: codeWindow,
+                        translateX: translateX,
+                        translateY: translateY,
+                        scale: 0.01,
+                        easing: 'easeInOutQuad',
+                        duration: 250,
+                        complete: () => {
+                            codeWindow.style.display = 'none'
+                            resolve();
+                        }
+                    });
+                }
+                else if (direction === 'max'){
+                    codeWindow.style.display = 'flex';
+                    codeWindow.style.zIndex = 1;
+
+                    anime({
+                        targets: codeWindow,
+                        translateX: 0,
+                        translateY: 0,
+                        scale: 1,
+                        opacity: 1,
+                        borderRadius: '0.5rem',
+                        easing: 'easeInOutQuad',
+                        duration: 250,
+                        complete: () => resolve()
+                    });
+                }
+                else {
+                    resolve();
+                }
+                break;
+            default:
+                resolve();
+                break;
+        }
+    })
+}
+
+//can change this to take in 2 parameters to toggle opening/closing animations?
+//maybe change this the ids so that i can just get the element directly w/ passed in parameters
+//TODO 11/12: add an actual open animation at some point
+function openAnims(name){
+    switch (name) {
+        case 'portfolio':
+            portfolioWindow.style.zIndex = 1;
+            const nameContainer = document.getElementById('nameHeader');
+            const name = 'Maxwell Brown | CS Senior at Appalachian State University';    
+
+            anime({
+                targets: nameContainer,
+                textContent: ['', name],
+                duration: 2000,
+                easing: 'easeInOutQuad',
+                delay: 500,
+                update: function(anim) {
+                    nameContainer.textContent = name.substring(0, Math.round(anim.progress / 100 * name.length));
+                }
+            });
+            break;
+        case 'code':
+            codeWindow.style.zIndex = 1;
+            
+            break;
+        default:
+            break;
+    }
+}
+
+// function startWindow(name){
+//     portfolioWindow.style.display = 'flex';
+//     portfolioButton.style.display = 'flex';
+//     portfolioWindow.style.zIndex = 1;
+//     const nameContainer = document.getElementById('nameHeader');
+//     const name = 'Maxwell Brown | CS Senior at Appalachian State University';    
+
+//     anime({
+//         targets: nameContainer,
+//         textContent: ['', name],
+//         duration: 2000,
+//         easing: 'easeInOutQuad',
+//         delay: 500,
+//         update: function(anim) {
+//             nameContainer.textContent = name.substring(0, Math.round(anim.progress / 100 * name.length));
+//         }
+//     });
+//     isMinimized = false;
+// }
+
 
 window.addEventListener('load', () => {
     startupWindow();
     //deleted the getElementById and it still works #ilovecoding
     pb.style.display = 'none'
+
     const loadingScreen = document.getElementById('loadingScreen');
     const progressPercentage = document.getElementById('progressPercentage');
     const startup1 = document.getElementById('startup1');
@@ -29,9 +232,9 @@ window.addEventListener('load', () => {
     //god's most efficient animation
     anime({
         targets: startup1,
-        duration: 800,
+        duration: 500,
         easing: 'linear',
-        delay: 500,
+        delay: 200,
         update: function(anim){
             const progress = Math.round(anim.progress / 100 * line1.length);
             startup1.textContent = line1.substring(0, progress) + (anim.progress < 100 ? "█" : "");
@@ -41,9 +244,9 @@ window.addEventListener('load', () => {
             
             anime({
                 targets: startup2,
-                duration: 800,
+                duration: 500,
                 easing: 'linear',
-                delay: 500,
+                delay: 200,
                 update: function(anim){
                             const progress = Math.round(anim.progress / 100 * line2.length);
                             startup2.textContent = line2.substring(0, progress) + (anim.progress < 100 ? "█" : "");
@@ -53,9 +256,9 @@ window.addEventListener('load', () => {
 
                     anime({
                         targets: startup3,
-                        duration: 800,
+                        duration: 500,
                         easing: 'linear',
-                        delay: 300,
+                        delay: 200,
                         update: function(anim){
                             const progress = Math.round(anim.progress / 100 * line3.length);
                             startup3.textContent = line3.substring(0, progress) + (anim.progress < 100 ? "█" : "");
@@ -196,31 +399,31 @@ document.addEventListener('DOMContentLoaded', function(){
 // portfolioButton.textContent = 'Portfolio.exe';
 // portfolioButton.className = 'bg-b300 hover:bg-b200 text-white text-sm px-3 py-1 rounded transition-all duration-200';
 
-function closeWindow(){
-    portfolioWindow.style.display = 'none';
-    portfolioButton.style.display = 'none';
-    isMinimized = true;
-}
+// function closeWindow(){
+//     portfolioWindow.style.display = 'none';
+//     portfolioButton.style.display = 'none';
+//     isMinimized = true;
+// }
 
-function openWindow(){
-    portfolioWindow.style.display = 'flex';
-    portfolioButton.style.display = 'flex';
-    portfolioWindow.style.zIndex = 1;
-    const nameContainer = document.getElementById('nameHeader');
-    const name = 'Maxwell Brown | CS Senior at Appalachian State University';    
+// function openWindow(){
+//     portfolioWindow.style.display = 'flex';
+//     portfolioButton.style.display = 'flex';
+//     portfolioWindow.style.zIndex = 1;
+//     const nameContainer = document.getElementById('nameHeader');
+//     const name = 'Maxwell Brown | CS Senior at Appalachian State University';    
 
-    anime({
-        targets: nameContainer,
-        textContent: ['', name],
-        duration: 2000,
-        easing: 'easeInOutQuad',
-        delay: 500,
-        update: function(anim) {
-            nameContainer.textContent = name.substring(0, Math.round(anim.progress / 100 * name.length));
-        }
-    });
-    isMinimized = false;
-}
+//     anime({
+//         targets: nameContainer,
+//         textContent: ['', name],
+//         duration: 2000,
+//         easing: 'easeInOutQuad',
+//         delay: 500,
+//         update: function(anim) {
+//             nameContainer.textContent = name.substring(0, Math.round(anim.progress / 100 * name.length));
+//         }
+//     });
+//     isMinimized = false;
+// }
 
 function changeWindow(){
     if (isMinimized){
@@ -261,49 +464,49 @@ function startupWindow(){
     //         portfolioWindow.style.display = 'none';
     //     }
     // })
-    portfolioWindow.style.display = 'none';
-    portfolioButton.style.display = 'none';
+    // portfolioWindow.style.display = 'none';
+    // portfolioButton.style.display = 'none';
 }
 
-function minimizeWindow(){
-    let buttonCoords = portfolioButton.getBoundingClientRect();
-    let windowCoords = mainWindow.getBoundingClientRect();
+// function minimizeWindow(){
+//     let buttonCoords = portfolioButton.getBoundingClientRect();
+//     let windowCoords = mainWindow.getBoundingClientRect();
 
-    let translateX = buttonCoords.left + buttonCoords.width/2 - (windowCoords.left + windowCoords.width/2);
-    let translateY = buttonCoords.top + buttonCoords.height/2 - (windowCoords.top + windowCoords.height/2);
+//     let translateX = buttonCoords.left + buttonCoords.width/2 - (windowCoords.left + windowCoords.width/2);
+//     let translateY = buttonCoords.top + buttonCoords.height/2 - (windowCoords.top + windowCoords.height/2);
 
-    portfolioWindow.style.zIndex = 0;
+//     portfolioWindow.style.zIndex = 0;
 
-    anime({
-        targets: portfolioWindow,
-        translateX: translateX,
-        translateY: translateY,
-        scale: 0.01,
-        easing: 'easeInOutQuad',
-        duration: 250,
-        complete: () => {
-            portfolioWindow.style.display = 'none'
-        }
-    });
-    isMinimized = true;
-}
+//     anime({
+//         targets: portfolioWindow,
+//         translateX: translateX,
+//         translateY: translateY,
+//         scale: 0.01,
+//         easing: 'easeInOutQuad',
+//         duration: 250,
+//         complete: () => {
+//             portfolioWindow.style.display = 'none'
+//         }
+//     });
+//     isMinimized = true;
+// }
 
-function restoreWindow(){
-    portfolioWindow.style.display = 'flex';
-    portfolioWindow.style.zIndex = 1;
+// function restoreWindow(){
+//     portfolioWindow.style.display = 'flex';
+//     portfolioWindow.style.zIndex = 1;
 
-    anime({
-        targets: portfolioWindow,
-        translateX: 0,
-        translateY: 0,
-        scale: 1,
-        opacity: 1,
-        borderRadius: '0.5rem',
-        easing: 'easeInOutQuad',
-        duration: 250,
-    });
-    isMinimized = false
-}
+//     anime({
+//         targets: portfolioWindow,
+//         translateX: 0,
+//         translateY: 0,
+//         scale: 1,
+//         opacity: 1,
+//         borderRadius: '0.5rem',
+//         easing: 'easeInOutQuad',
+//         duration: 250,
+//     });
+//     isMinimized = false
+// }
 
 function highlightSection(className){
     anime({
