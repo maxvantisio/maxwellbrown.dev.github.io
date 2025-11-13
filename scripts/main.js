@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function windowManager(){
     return {
         windows: {
-            portfolio: {state: 'closed'},
+            portfolio: {state: 'open'},
             code: {state: 'closed'}
         },
         onTop: '',
@@ -172,6 +172,10 @@ function openAnims(name){
             const nameContainer = document.getElementById('nameHeader');
             const name = 'Maxwell Brown | CS Senior at Appalachian State University';    
 
+            //i will fix the flashing later ig
+            // nameContainer.textContent = '';
+            // nameContainer.style.opacity = 1;
+
             anime({
                 targets: nameContainer,
                 textContent: ['', name],
@@ -192,25 +196,26 @@ function openAnims(name){
     }
 }
 
-// function startWindow(name){
-//     portfolioWindow.style.display = 'flex';
-//     portfolioButton.style.display = 'flex';
-//     portfolioWindow.style.zIndex = 1;
-//     const nameContainer = document.getElementById('nameHeader');
-//     const name = 'Maxwell Brown | CS Senior at Appalachian State University';    
+function startWindow(){
+    //portfolioWindow.style.display = 'flex';
+    //portfolioButton.style.display = 'flex';
+    //portfolioWindow.style.zIndex = 1;
+    let nameContainer2 = document.getElementById('nameHeader');
+    let name2 = 'Maxwell Brown | CS Senior at Appalachian State University';
 
-//     anime({
-//         targets: nameContainer,
-//         textContent: ['', name],
-//         duration: 2000,
-//         easing: 'easeInOutQuad',
-//         delay: 500,
-//         update: function(anim) {
-//             nameContainer.textContent = name.substring(0, Math.round(anim.progress / 100 * name.length));
-//         }
-//     });
-//     isMinimized = false;
-// }
+    nameContainer2.textContent = '';
+
+    anime({
+        targets: nameContainer2,
+        textContent: ['', name2],
+        duration: 2000,
+        easing: 'easeInOutQuad',
+        delay: 500,
+        update: function(anim) {
+            nameContainer2.textContent = name2.substring(0, Math.round(anim.progress / 100 * name2.length));
+        }
+    });
+}
 
 
 window.addEventListener('load', () => {
@@ -289,6 +294,7 @@ window.addEventListener('load', () => {
                                             duration: 500,
                                             complete: () => {
                                                 loadingScreen.style.display = 'none';
+                                                openAnims('portfolio');
                                             }
                                         });
                                     }, 500);
